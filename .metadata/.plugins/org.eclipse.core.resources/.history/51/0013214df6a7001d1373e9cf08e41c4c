@@ -1,0 +1,13 @@
+package com.moto.service.entidades;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Entity
+@Table("MOTO")
+@Data
+public class Moto {
+
+}

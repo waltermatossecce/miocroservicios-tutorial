@@ -1,0 +1,8 @@
+package com.usuario.service.FeignClients;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name="moto-service",url = "http:localhost:8003")
+public interface MotoFeignClients {
+
+}

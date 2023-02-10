@@ -1,0 +1,49 @@
+package com.usuario.service.servive;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.usuario.service.FeignClients.CarroFeignClient;
+import com.usuario.service.FeignClients.MotoFeignClients;
+import com.usuario.service.entidades.Usuario;
+import com.usuario.service.modelos.Carro;
+import com.usuario.service.modelos.Moto;
+import com.usuario.service.repositorio.UsuarioRepository;
+
+@Service
+public class UsuarioService {
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+    
+	public List<Usuario>getAll(){
+		return usuarioRepository.findAll();
+	}
+	public Usuario getUsuarioById(int id) {
+		return usuarioRepository.findById(id).orElse(null);
+	}
+	public Usuario save(Usuario usuario) {
+		Usuario nuevoUsuario=usuarioRepository.save(usuario);
+		return nuevoUsuario;
+	}
+
+	@Autowired
+	private MotoFeignClients motoFeignClients;
+	
+	public Moto save(int usuarioId,Moto moto) {
+		moto.setUsuarioId(usuarioId);
+		Moto nuevaMoto=motoFeignClients.save(moto);
+		return nuevaMoto;
+	}
+	@Autowired
+	private CarroFeignClient carroFeignClient;
+	
+	public Carro saveCarro(int usuarioId,Carro carro) {
+	  carro.setUsuarioId(usuarioId);
+	  Carro nuevaCarro=carroFeignClient.saveCarros(carro);
+	  return nuevaCarro;
+	}
+	
+}

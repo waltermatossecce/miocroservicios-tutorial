@@ -1,0 +1,5 @@
+package com.usuario.service.FeignClients;
+
+public interface CarroFeignClient {
+
+}

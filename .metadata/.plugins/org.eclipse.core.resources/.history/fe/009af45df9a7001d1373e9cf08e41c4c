@@ -1,0 +1,9 @@
+package com.usuario.service.modelos;
+
+public class Carro {
+
+	private int id;
+	private String marca;
+	private String modelo;
+	private int usuarioId;
+}
